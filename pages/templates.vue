@@ -1,7 +1,7 @@
 <template>
   <div>
       <h2>
-          Templates
+          <iotindicator></iotindicator>
       </h2>
 
   </div>
