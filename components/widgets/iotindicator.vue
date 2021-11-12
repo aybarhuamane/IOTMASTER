@@ -20,7 +20,7 @@ export default {
   //props: ['config'],
   data() {
     return {
-      value: TextTrackCueList,
+      value: false,
       config: {
         userId: "userid",
         selectedDevice: {

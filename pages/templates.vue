@@ -2,7 +2,8 @@
   <div>
    
    <iotindicator></iotindicator>
-   <button  @click="sendData">SEND</button>
+   <!-- <button  >SEND</button> -->
+    <base-button  @click="sendData" type="success" class="nb-3" size ="lg">Add </base-button>
 
   </div>
  </template>
