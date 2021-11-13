@@ -12,36 +12,40 @@
       style="font-size: 30px"
     ></i>
 
+    <base-button  @click="sendValue()" :type="config.class" class="mb-3 pull-right" size="lg">Add</base-button>
+
   </card>
 </template>
 
 <script>
 export default {
-  props: ['config'],
+  props: ["config"],
   data() {
     return {
-      value: false,
-
+      sending: false,
     };
   },
-  mounted(){
-      //userId/dId/uniquestr/sdata
-    const topic = this.config.userId + "/" + this.config.selectedDevice.dId + "/" + this.config.variable + "/sdata";
-    console.log(topic);
-    this.$nuxt.$on(topic, this.processReceivedData)
+  mounted() {
+ 
   },
-  beforeDestroy(){
-    this.$nuxt.$off(this.config.userId + "/" + this.config.selectedDevice.dId + "/" + this.config.variable + "/sdata")
-  },
- methods: {
-    processReceivedData(data){
-        console.log("received");
-        console.log(data);
-        this.value = data.value;
+  methods: {
+    sendValue() {
+        this.sending = true;
+        setTimeout(() => {
+            this.sending = false;
+        }, 500);
+        const toSend = {
+            topic: this.config.userId + "/" + this.config.selectedDevice.dId + "/" + this.config.variable + "/actdata",
+            msg: {
+                value: this.config.message
+            }
+        };
+        console.log(toSend);
+        this.$nuxt.$emit('mqtt-sender', toSend);
     },
-      
+   
     getIconColorClass() {
-      if (!this.value) {
+      if (!this.sending) {
         return "text-dark";
       }
       if (this.config.class == "success") {
@@ -59,5 +63,4 @@ export default {
     }
   }
 };
-//userId/dId/uniquestr/sdata
 </script>

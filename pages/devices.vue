@@ -83,7 +83,7 @@
             <div slot-scope="{ row, $index }">
                 {{row.saverRule}}
             <el-tooltip content="Database Saver">
-                <base-switch @click="updateSaverRuleStatus($index)" :value="row.saverRule" type="primary" on-text="On" off-text="Off"></base-switch>
+                <base-switch @click="updateSaverRuleStatus($index)" :value="row.saverRule" type="danger" on-text="On" off-text="Off"></base-switch>
             </el-tooltip>
               <el-tooltip content="Delete" effect="light" :open-delay="300" placement="top">
                 <base-button type="danger" icon size="sm" class="btn-link" @click="deleteDevice(row)">
